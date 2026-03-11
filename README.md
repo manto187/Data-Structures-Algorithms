@@ -16,6 +16,17 @@ According to standard lab practices, these implementations include specific enha
 | **Node Count** | O(1) size tracking and position validation. | `getSize()` becomes **O(1)** |
 | **Bidirectional (DLL)** | Direct access to the `prev` pointer. | `deleteLastNode` becomes **O(1)** |
 
+## 📊 Algorithmic Efficiency
+The following table compares the time complexities of the optimized implementations [1, 3]:
+
+| Operation | Singly Linked List | Doubly Linked List |
+| :--- | :--- | :--- |
+| Add Start | O(1) | O(1) |
+| Add End | **O(1)** | **O(1)** |
+| Delete Start | O(1) | O(1) |
+| Delete End | O(n) | **O(1)** |
+| Search/Update | O(n) | O(n) |
+
 # 🚀 Getting Started
 
 Follow these steps to set up the project environment and execute the application on your local machine.
