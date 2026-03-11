@@ -17,7 +17,7 @@ According to standard lab practices, these implementations include specific enha
 | **Bidirectional (DLL)** | Direct access to the `prev` pointer. | `deleteLastNode` becomes **O(1)** |
 
 ## 📊 Algorithmic Efficiency
-The following table compares the time complexities of the optimized implementations [1, 3]:
+The following table compares the time complexities of the optimized implementations:
 
 | Operation | Singly Linked List | Doubly Linked List |
 | :--- | :--- | :--- |
