@@ -35,5 +35,32 @@ Follow this sequence of commands in your terminal:
 #### **1️⃣ Clone the Repository**
 First, download the source code to your machine:
 ```bash
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-   
+git clone https://github.com/manto187/Data-Structures-Algorithms.git
+   ```
+
+### 📂 Step 2: Navigate to the Task Directory
+Move into your project folder to start working with the source files.
+
+| OS Platform | Command |
+| :--- | :--- |
+| **Linux / macOS** | `cd task-directory` |
+| **Windows (CMD/PS)** | `cd task-directory` |
+
+> [!TIP]
+> Use the `ls` (or `dir` on Windows) command to verify you are in the correct folder before proceeding.
+
+---
+
+### ⚙️ Step 3: Compile and Run
+Convert your source code into an executable file and launch it immediately.
+
+#### **Quick Compilation Guide**
+Choose the command that matches your terminal environment:
+#### **For Linus/macOS/Git Bash**
+```bash
+g++ main.cpp -o app && ./app
+```
+#### **For Windows PowerShell**
+```bash
+g++ main.cpp -o app; if ($?) { .\app }
+```
