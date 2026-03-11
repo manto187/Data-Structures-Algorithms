@@ -7,6 +7,15 @@ Both implementations support the following core operations:
 - **Node Management:** Efficient deletion and value updates.
 - **Optimized Performance:** Utilizes **Tail Pointers** and **Node Counts** to reduce complexity.
 
+  ## 🛠️ Optimization Highlights
+According to standard lab practices, these implementations include specific enhancements to overcome standard performance bottlenecks:
+
+| Optimization | Benefit | Impact |
+| :--- | :--- | :--- |
+| **Tail Pointer** | Eliminates O(n) traversal for end-of-list operations. | `addAtEnd` becomes **O(1)** |
+| **Node Count** | O(1) size tracking and position validation. | `getSize()` becomes **O(1)** |
+| **Bidirectional (DLL)** | Direct access to the `prev` pointer. | `deleteLastNode` becomes **O(1)** |
+
 # 🚀 Getting Started
 
 Follow these steps to set up the project environment and execute the application on your local machine.
