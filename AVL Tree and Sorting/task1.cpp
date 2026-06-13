@@ -52,3 +52,65 @@ Node* rightRotate(Node* y)
 
     return x;
 }
+
+
+Node* leftRotate(Node* x)
+{
+    Node* y = x->right;
+    Node* T2 = y->left;
+
+    y->left = x;
+    x->right = T2;
+
+    x->height = maxValue(getHeight(x->left),
+                         getHeight(x->right)) + 1;
+
+    y->height = maxValue(getHeight(y->left),
+                         getHeight(y->right)) + 1;
+
+    return y;
+}
+
+Node* insert(Node* root, int value)
+{
+    if(root == NULL)
+        return new Node(value);
+
+    if(value < root->data)
+        root->left = insert(root->left, value);
+
+    else if(value > root->data)
+        root->right = insert(root->right, value);
+
+    else
+        return root;
+
+    root->height = 1 + maxValue(getHeight(root->left),
+                                getHeight(root->right));
+
+    int balance = getBalance(root);
+
+    // LL Case
+    if(balance > 1 && value < root->left->data)
+        return rightRotate(root);
+
+    // RR Case
+    if(balance < -1 && value > root->right->data)
+        return leftRotate(root);
+
+    // LR Case
+    if(balance > 1 && value > root->left->data)
+    {
+        root->left = leftRotate(root->left);
+        return rightRotate(root);
+    }
+
+    // RL Case
+    if(balance < -1 && value < root->right->data)
+    {
+        root->right = rightRotate(root->right);
+        return leftRotate(root);
+    }
+
+    return root;
+}
