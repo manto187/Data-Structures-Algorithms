@@ -1,7 +1,11 @@
 #include <iostream>
 using namespace std;
 
-enum Color {RED, BLACK};
+enum Color
+{
+    RED,
+    BLACK
+};
 
 class Node
 {
@@ -21,23 +25,23 @@ public:
 class RBTree
 {
 private:
-    Node* root;
+    Node *root;
 
-    void rotateLeft(Node*& root, Node*& pt)
+    void rotateLeft(Node *&root, Node *&pt)
     {
-        Node* pt_right = pt->right;
+        Node *pt_right = pt->right;
 
         pt->right = pt_right->left;
 
-        if(pt->right != NULL)
+        if (pt->right != NULL)
             pt->right->parent = pt;
 
         pt_right->parent = pt->parent;
 
-        if(pt->parent == NULL)
+        if (pt->parent == NULL)
             root = pt_right;
 
-        else if(pt == pt->parent->left)
+        else if (pt == pt->parent->left)
             pt->parent->left = pt_right;
 
         else
@@ -47,21 +51,21 @@ private:
         pt->parent = pt_right;
     }
 
-    void rotateRight(Node*& root, Node*& pt)
+    void rotateRight(Node *&root, Node *&pt)
     {
-        Node* pt_left = pt->left;
+        Node *pt_left = pt->left;
 
         pt->left = pt_left->right;
 
-        if(pt->left != NULL)
+        if (pt->left != NULL)
             pt->left->parent = pt;
 
         pt_left->parent = pt->parent;
 
-        if(pt->parent == NULL)
+        if (pt->parent == NULL)
             root = pt_left;
 
-        else if(pt == pt->parent->left)
+        else if (pt == pt->parent->left)
             pt->parent->left = pt_left;
 
         else
@@ -71,24 +75,24 @@ private:
         pt->parent = pt_left;
     }
 
-void fixViolation(Node*& root, Node*& pt)
+    void fixViolation(Node *&root, Node *&pt)
     {
-        Node* parent_pt = NULL;
-        Node* grand_parent_pt = NULL;
+        Node *parent_pt = NULL;
+        Node *grand_parent_pt = NULL;
 
-        while((pt != root) &&
-              (pt->color != BLACK) &&
-              (pt->parent->color == RED))
+        while ((pt != root) &&
+               (pt->color != BLACK) &&
+               (pt->parent->color == RED))
         {
             parent_pt = pt->parent;
             grand_parent_pt = pt->parent->parent;
 
-            if(parent_pt == grand_parent_pt->left)
+            if (parent_pt == grand_parent_pt->left)
             {
-                Node* uncle_pt = grand_parent_pt->right;
+                Node *uncle_pt = grand_parent_pt->right;
 
-                if(uncle_pt != NULL &&
-                   uncle_pt->color == RED)
+                if (uncle_pt != NULL &&
+                    uncle_pt->color == RED)
                 {
                     grand_parent_pt->color = RED;
                     parent_pt->color = BLACK;
@@ -97,7 +101,7 @@ void fixViolation(Node*& root, Node*& pt)
                 }
                 else
                 {
-                    if(pt == parent_pt->right)
+                    if (pt == parent_pt->right)
                     {
                         rotateLeft(root, parent_pt);
                         pt = parent_pt;
@@ -114,10 +118,10 @@ void fixViolation(Node*& root, Node*& pt)
             }
             else
             {
-                Node* uncle_pt = grand_parent_pt->left;
+                Node *uncle_pt = grand_parent_pt->left;
 
-                if((uncle_pt != NULL) &&
-                   (uncle_pt->color == RED))
+                if ((uncle_pt != NULL) &&
+                    (uncle_pt->color == RED))
                 {
                     grand_parent_pt->color = RED;
                     parent_pt->color = BLACK;
@@ -126,7 +130,7 @@ void fixViolation(Node*& root, Node*& pt)
                 }
                 else
                 {
-                    if(pt == parent_pt->left)
+                    if (pt == parent_pt->left)
                     {
                         rotateRight(root, parent_pt);
                         pt = parent_pt;
@@ -145,3 +149,74 @@ void fixViolation(Node*& root, Node*& pt)
 
         root->color = BLACK;
     }
+
+    void inorderHelper(Node *root)
+    {
+        if (root == NULL)
+            return;
+
+        inorderHelper(root->left);
+
+        cout << root->data
+             << "("
+             << (root->color == RED ? "R" : "B")
+             << ") ";
+
+        inorderHelper(root->right);
+    }
+
+public:
+    RBTree()
+    {
+        root = NULL;
+    }
+
+    void insert(const int &data)
+    {
+        Node *pt = new Node(data);
+
+        Node *y = NULL;
+        Node *x = root;
+
+        while (x != NULL)
+        {
+            y = x;
+
+            if (pt->data < x->data)
+                x = x->left;
+            else
+                x = x->right;
+        }
+
+        pt->parent = y;
+
+        if (y == NULL)
+            root = pt;
+
+        else if (pt->data < y->data)
+            y->left = pt;
+
+        else
+            y->right = pt;
+
+        fixViolation(root, pt);
+    }
+
+    void inorder()
+    {
+        inorderHelper(root);
+    }
+};
+
+int main()
+{
+    RBTree tree;
+
+    tree.insert(10);
+    tree.insert(20);
+    tree.insert(30);
+
+    tree.inorder();
+
+    return 0;
+}
