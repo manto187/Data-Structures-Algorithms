@@ -114,3 +114,27 @@ Node* insert(Node* root, int value)
 
     return root;
 }
+
+void inorder(Node* root)
+{
+    if(root != NULL)
+    {
+        inorder(root->left);
+        cout << root->data << " ";
+        inorder(root->right);
+    }
+}
+
+int main()
+{
+    Node* root = NULL;
+
+    root = insert(root, 30);
+    root = insert(root, 10);
+    root = insert(root, 20);
+
+    cout << "Inorder Traversal: ";
+    inorder(root);
+
+    return 0;
+}
