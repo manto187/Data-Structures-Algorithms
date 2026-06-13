@@ -70,3 +70,78 @@ private:
         pt_left->right = pt;
         pt->parent = pt_left;
     }
+
+void fixViolation(Node*& root, Node*& pt)
+    {
+        Node* parent_pt = NULL;
+        Node* grand_parent_pt = NULL;
+
+        while((pt != root) &&
+              (pt->color != BLACK) &&
+              (pt->parent->color == RED))
+        {
+            parent_pt = pt->parent;
+            grand_parent_pt = pt->parent->parent;
+
+            if(parent_pt == grand_parent_pt->left)
+            {
+                Node* uncle_pt = grand_parent_pt->right;
+
+                if(uncle_pt != NULL &&
+                   uncle_pt->color == RED)
+                {
+                    grand_parent_pt->color = RED;
+                    parent_pt->color = BLACK;
+                    uncle_pt->color = BLACK;
+                    pt = grand_parent_pt;
+                }
+                else
+                {
+                    if(pt == parent_pt->right)
+                    {
+                        rotateLeft(root, parent_pt);
+                        pt = parent_pt;
+                        parent_pt = pt->parent;
+                    }
+
+                    rotateRight(root, grand_parent_pt);
+
+                    swap(parent_pt->color,
+                         grand_parent_pt->color);
+
+                    pt = parent_pt;
+                }
+            }
+            else
+            {
+                Node* uncle_pt = grand_parent_pt->left;
+
+                if((uncle_pt != NULL) &&
+                   (uncle_pt->color == RED))
+                {
+                    grand_parent_pt->color = RED;
+                    parent_pt->color = BLACK;
+                    uncle_pt->color = BLACK;
+                    pt = grand_parent_pt;
+                }
+                else
+                {
+                    if(pt == parent_pt->left)
+                    {
+                        rotateRight(root, parent_pt);
+                        pt = parent_pt;
+                        parent_pt = pt->parent;
+                    }
+
+                    rotateLeft(root, grand_parent_pt);
+
+                    swap(parent_pt->color,
+                         grand_parent_pt->color);
+
+                    pt = parent_pt;
+                }
+            }
+        }
+
+        root->color = BLACK;
+    }
