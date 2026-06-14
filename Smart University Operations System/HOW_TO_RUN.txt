@@ -1,0 +1,48 @@
+========================================
+SMART UNIVERSITY OPERATIONS SYSTEM
+HOW TO RUN
+========================================
+
+COMPILATION:
+------------
+g++ -std=c++11 src/main.cpp -o university_system.exe
+
+OR use the build script:
+./build.bat
+
+RUNNING THE PROGRAM:
+--------------------
+./university_system.exe
+
+OR use the run script:
+./run.bat
+
+FEATURES:
+---------
+1. Student Management (Dynamic Array, Hash Table, AVL Tree)
+2. Course Registration (Singly Linked List)
+3. Library Management (Hash Table, AVL Tree, Queue)
+4. Complaint Management (Queue, Circular Queue, Heap)
+5. Campus Navigation (Graph with BFS/Dijkstra)
+6. Undo/Redo Operations (Stack)
+7. Recently Viewed Records (Navigation History)
+8. Search & Sort Analysis (Algorithm Comparison)
+
+DATA PERSISTENCE:
+-----------------
+Student data is automatically saved to: data/students.txt
+Data is loaded when the program starts.
+
+REQUIREMENTS:
+-------------
+- C++ compiler with C++11 support (g++, MinGW, etc.)
+- Windows OS (for .bat scripts)
+
+NOTES:
+------
+- The program uses a console-based menu system
+- All data structures are manually implemented (no STL containers)
+- Includes complexity analysis and performance comparisons
+- File handling for persistent storage
+
+========================================

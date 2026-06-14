@@ -1,0 +1,5 @@
+101,Ali Ahmed,Computer Science,3.85
+102,Fatima Khan,Electrical Engineering,3.92
+103,Hassan Malik,Software Engineering,3.67
+104,Ayesha Siddiqui,Computer Science,3.78
+105,Omar Farooq,Information Technology,3.54
